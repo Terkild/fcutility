@@ -7,7 +7,7 @@ target_folder <- file.path("path/to/fcs/folders/edited")
 target_files <- gsub(source_folder, target_folder, source_files)
 
 ## Create target dir if it does not exist
-dir.create(dirname(target_files)[!dir.exists(dirname(target_files)], recursive=TRUE)
+dir.create(dirname(target_files)[!dir.exists(dirname(target_files))], recursive=TRUE)
 
 ## What channels should be annotated?
 annotate_channels <- c("APC-A"="test1",

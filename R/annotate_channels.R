@@ -6,9 +6,6 @@ source_files <- list.files(path=source_folder, pattern=".fcs$", recursive=TRUE, 
 target_folder <- file.path("path/to/fcs/folders/edited")
 target_files <- gsub(source_folder, target_folder, source_files)
 
-## Create target dir if it does not exist
-dir.create(dirname(target_files)[!dir.exists(dirname(target_files))], recursive=TRUE)
-
 ## What channels should be annotated?
 annotate_channels <- c("APC-A"="test1",
                       "PE-A"="test2",
@@ -19,6 +16,9 @@ annotate_channels <- c("APC-A"="test1",
 for(i in seq_along(source_files)){
   source_fcs_file <- source_files[i]
   target_fcs_file <- target_files[i]
+
+  ## Create target dir if it does not exist
+  if(!dir.exists(dirname(target_fcs_file))) dir.create(dirname(target_fcs_file), recursive=TRUE)
 
   ## Read FCS file contents
   fcs1 <- flowCore::read.FCS(filename=source_fcs_file)
